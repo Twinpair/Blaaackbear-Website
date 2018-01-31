@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   get 'information/edit', to: 'information#edit'
 
   resources :information, only: [:index, :update]
+  resources :albums
 
 end

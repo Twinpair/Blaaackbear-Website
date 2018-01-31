@@ -1,0 +1,58 @@
+<% unless params[:edit]%>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="logo"><a href="/"><%= image_tag('logo.png') %></a></div>
+    <a href="#menu"><span>Menu</span></a>
+  </header>
+
+  <!-- Nav -->
+  <nav id="menu">
+    <ul class="links">
+      <li><a href="/#banner" class="scrolly">Home</a></li>
+      <li><a href="/#about" class="scrolly">About Me</a></li>
+      <li><a href="/#photography" class="scrolly">Photography</a></li>
+      <li><a href="/#contact" class="scrolly">Contact Me</a></li>
+      <li><a></a></li>
+      <li>
+        <ul class="icons">
+          <% unless @information.instagram.blank? %>
+            <li><a href="<%= @information.instagram %>" class="icon round fa-instagram" target="blank"><span class="label">Instagram</span></a></li>
+          <% end %>
+          <% unless @information.twitter.blank? %>
+            <li><a href="<%= @information.twitter %>" class="icon round fa-twitter" target="blank"><span class="label">Twitter</span></a></li>
+          <% end %>
+          <% unless @information.facebook.blank? %>
+            <li><a href="<%= @information.facebook %>" class="icon round fa-facebook" target="blank"><span class="label">Facebook</span></a></li>
+          <% end %>
+          <% unless @information.linkedin.blank? %>
+            <li><a href="<%= @information.linkedin %>" class="icon round fa-linkedin" target="blank"><span class="label">LinkedIn</span></a></li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+<% else %>
+
+  <%= link_to "Go Back To Homepage", root_path, class: "btn btn-success", style: "margin: 15px 10px;" %>
+  <%= link_to "Go Back To Albums page", albums_path, class: "btn btn-warning", style: "margin: 15px 10px;" %>
+
+<% end %>
+
+    <!-- Content -->
+    <section id="post" class="wrapper bg-img" style="background-image: url(<%= @album.cover_image.url %>);">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <%= image_tag('about.jpg') %>
+          </div>
+          <div class="col-lg-6">
+            <%= image_tag('banner.jpg') %>
+          </div>
+          <div class="col-lg-6">
+            <%= image_tag('contact.jpg') %>
+          </div>
+        </div>
+      </div>
+    </section>
