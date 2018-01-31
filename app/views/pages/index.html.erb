@@ -1,34 +1,57 @@
-<!-- Nav -->
+<!-- Header -->
+    <header id="header">
+      <div class="logo"><a href="/"><%= image_tag('logo.png') %></a></div>
+      <a href="#menu"><span>Menu</span></a>
+    </header>
+
+    <!-- Nav -->
     <nav id="menu">
       <ul class="links">
         <li><a href="#banner" class="scrolly">Home</a></li>
-        <li><a href="#about" class="scrolly">About</a></li>
+        <li><a href="#about" class="scrolly">About Me</a></li>
         <li><a href="#photography" class="scrolly">Photography</a></li>
         <li><a href="#contact" class="scrolly">Contact Me</a></li>
+        <li><a></a></li>
+        <li>
+          <ul class="icons">
+            <% unless @information.instagram.blank? %>
+              <li><a href="<%= @information.instagram %>" class="icon round fa-instagram" target="blank"><span class="label">Instagram</span></a></li>
+            <% end %>
+            <% unless @information.twitter.blank? %>
+              <li><a href="<%= @information.twitter %>" class="icon round fa-twitter" target="blank"><span class="label">Twitter</span></a></li>
+            <% end %>
+            <% unless @information.facebook.blank? %>
+              <li><a href="<%= @information.facebook %>" class="icon round fa-facebook" target="blank"><span class="label">Facebook</span></a></li>
+            <% end %>
+            <% unless @information.linkedin.blank? %>
+              <li><a href="<%= @information.linkedin %>" class="icon round fa-linkedin" target="blank"><span class="label">LinkedIn</span></a></li>
+            <% end %>
+          </ul>
+        </li>
       </ul>
     </nav>
 
     <!-- Banner -->
-    <section id="banner" class="bg-img" style="background-image: url(<%= asset_path('banner.jpg') %>);">
+    <section id="banner" class="bg-img" style="background-image: url(<%= @information.banner_image? ? @information.banner_image.url : asset_path('banner.jpg') %>);">
       <div class="inner">
         <header>
-          <h1>Blaaackbear</h1>
-          <h2>NYC BASED PHOTOGRAPHER</h2>
-          <h3>Vivek Dodia</h3>
+          <h1><%= @information.title %></h1>
+          <h2><%= @information.headline %></h2>
+          <h3><%= @information.name %></p></h3>
         </header>
       </div>
-      <a href="#about" class="more scrolly">Learn More</a>
+      <a href="#about" class="more scrolly">About Me</a>
     </section>
 
     <!-- About -->
-    <section id="about" class="wrapper post bg-img" style="background-image: url(<%= asset_path('about.jpg') %>);">
+    <section id="about" class="wrapper post bg-img" style="background-image: url(<%= @information.about_image? ? @information.about_image.url : asset_path('about.jpg') %>);">
       <div class="inner">
         <article>
           <header>
             <h2>About Me</h2>
           </header>
           <div class="content">
-            <p>Hi, My name is Vivek Dodia. I am currently a freshman studying Information Technology and doing freelance photography and videography as a hobby for almost two years now, I have experience in doing paid or promotion portraits, personal branding, product and architecture photography. Thank you!</p>
+            <p><%= @information.about_me %></p>
           </div>
           <footer>
             <a href="#one" class="button alt scrolly">Check Out My Photography</a>
@@ -107,21 +130,27 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="wrapper post bg-img" style="background-image: url(<%= asset_path('contact.jpg') %>);">
+    <footer id="contact" class="wrapper post bg-img" style="background-image: url(<%= @information.contact_image? ? @information.contact_image.url : asset_path('contact.jpg') %>);">>
       <div class="inner">
         <form action="#" method="post" class="box">
           <h2>Contact Me</h2>
+          <% unless @information.email.blank? %>
+            <p><b>Email:</b> <%= @information.email %></p>
+          <% end %>
+          <% unless @information.phone.blank? %>
+            <p><b>Phone #:</b> <%= @information.phone %></p>
+          <% end %>
           <div class="field half first">
             <label for="name">Name</label>
-            <input name="name" id="name" type="text" placeholder="Name">
+            <input name="name" id="name" type="text">
           </div>
           <div class="field half">
             <label for="email">Email</label>
-            <input name="email" id="email" type="email" placeholder="Email">
+            <input name="email" id="email" type="email">
           </div>
           <div class="field">
             <label for="message">Message</label>
-            <textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
+            <textarea name="message" id="message" rows="3"></textarea>
           </div>
           <ul class="actions">
             <li><input value="Send Message" class="button alt" type="submit"></li>
@@ -129,9 +158,18 @@
         </form>
 
         <ul class="icons">
-          <li><a href="#" class="icon round fa-twitter"><span class="label">Twitter</span></a></li>
-          <li><a href="#" class="icon round fa-facebook"><span class="label">Facebook</span></a></li>
-          <li><a href="#" class="icon round fa-instagram"><span class="label">Instagram</span></a></li>
+          <% unless @information.instagram.blank? %>
+            <li><a href="<%= @information.instagram %>" class="icon round fa-instagram" target="blank"><span class="label">Instagram</span></a></li>
+          <% end %>
+          <% unless @information.twitter.blank? %>
+            <li><a href="<%= @information.twitter %>" class="icon round fa-twitter"><span class="label" target="blank">Twitter</span></a></li>
+          <% end %>
+          <% unless @information.facebook.blank? %>
+            <li><a href="<%= @information.facebook %>" class="icon round fa-facebook" target="blank"><span class="label">Facebook</span></a></li>
+          <% end %>
+          <% unless @information.linkedin.blank? %>
+            <li><a href="<%= @information.linkedin %>" class="icon round fa-linkedin" target="blank"><span class="label">LinkedIn</span></a></li>
+          <% end %>
         </ul>
 
         <p class="copyright"><a href="https://www.eric-gonzalez.com/">Copyright © Eric Gonzalez, All Rights Reserved.</a>

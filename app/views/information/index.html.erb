@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <%= link_to "Go Back To Homepage", root_path, class: "btn btn-success", style: "margin: 15px 10px;" %>
+    <%= link_to "Go Back To Edit page", edit_path, class: "btn btn-warning", style: "margin: 15px 10px;" %>
+    <div class="model col-lg-12">
+      <h2 class="text-center">Information Data</h2>
+      <h1 class="text-center"><%= link_to "Edit", information_edit_path, class: "btn btn-primary btn-lg" %></h1><br>
+      <p><b>Title:</b> <%= @information.title %></p><br>
+      <p><b>Headline:</b> <%= @information.headline %></p><br>
+      <p><b>Name:</b> <%= @information.name %></p><br>
+      <p><b>Current Banner Image:</b><%= image_tag(@information.banner_image? ? @information.banner_image.url : asset_path('banner.jpg')) %></p><br>
+      <p><b>About Me:</b> <%= @information.about_me %></p><br>
+      <p><b>Current About Image:</b><%= image_tag(@information.about_image? ? @information.about_image.url : asset_path('about.jpg')) %></p><br>
+      <p><b>Current Contact Image:</b><%= image_tag(@information.contact_image? ? @information.contact_image.url : asset_path('contact.jpg')) %></p><br>
+      <p><b>Email:</b> <%= @information.email %></p><br>
+      <p><b>Phone #:</b> <%= @information.phone %></p><br>
+      <p><b>Instagram:</b> <%= @information.instagram %></p><br>
+      <p><b>Twitter:</b> <%= @information.twitter %></p><br>
+      <p><b>Facebook:</b> <%= @information.facebook %></p><br>
+      <p><b>LinkedIn:</b> <%= @information.linkedin %></p><br>
+    </div>
+  </div>
+</div>

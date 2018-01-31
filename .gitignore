@@ -22,3 +22,6 @@
 
 # Ignore Byebug command history file.
 .DS_Store
+
+# Ignore uploaded test images.
+/public/uploads

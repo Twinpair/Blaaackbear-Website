@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="col-lg-6 col-lg-offset-3">
+      <h2><u>Edit Information Data</u></h2>
+      <p class="text-center"><span>Leave field blank if you want nothing to be displayed</span></p>
+
+      <%= form_for(@information) do |f| %> 
+        <%= f.label :title %>
+        <%= f.text_field :title, class: "form-control" %><br>
+
+        <%= f.label :headline %>
+        <%= f.text_field :headline, class: "form-control" %><br>
+
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %><br>
+
+        <%= f.label :banner_image %>
+        <%= f.file_field :banner_image, accept: 'image/jpeg,image/gif,image/png', class: "form-control" %><br>
+        <p><b>Current Banner Image:</b><%= image_tag(@information.banner_image? ? @information.banner_image.url : asset_path('banner.jpg')) %></p><br>
+
+        <%= f.label :about_me, "About Me" %>
+        <%= f.text_area :about_me, style: "resize: none;", rows: "10", class: "form-control" %><br>
+
+        <%= f.label :about_me, "About Me" %>
+        <%= f.file_field :about_image, accept: 'image/jpeg,image/gif,image/png', class: "form-control" %><br>
+        <p><b>Current About Image:</b><%= image_tag(@information.about_image? ? @information.about_image.url : asset_path('about.jpg')) %></p><br>
+
+
+        <%= f.label :contact_image, "About Me" %>
+        <%= f.file_field :contact_image, accept: 'image/jpeg,image/gif,image/png', class: "form-control" %><br>
+        <p><b>Current Contact Image:</b><%= image_tag(@information.contact_image? ? @information.contact_image.url : asset_path('contact.jpg')) %></p><br>
+
+        <%= f.label :email %>
+        <%= f.text_field :email, class: "form-control" %><br>
+
+        <%= f.label :phone, "Phone Number" %>
+        <%= f.text_field :phone, class: "form-control" %><br>
+
+        <%= f.label :instagram %>
+        <%= f.text_field :instagram, class: "form-control" %><br>
+
+        <%= f.label :twitter %>
+        <%= f.text_field :twitter, class: "form-control" %><br>
+
+        <%= f.label :facebook %>
+        <%= f.text_field :facebook, class: "form-control" %><br>
+
+        <%= f.label :linkedin %>
+        <%= f.text_field :linkedin, class: "form-control" %><br>
+
+        <div class="col-lg-6">
+          <%= f.submit "Update", class: "btn btn-success btn-lg", style: "margin-bottom: 30px;" %>
+        </div>
+        <div class="col-lg-6">
+          <a href="/information" class="btn btn-danger btn-lg">Cancel</a>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
