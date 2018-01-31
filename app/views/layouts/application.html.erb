@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Blaaackbear</title>
+
+    <title>Blaaackbear - NYC Based Photographer</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
+  </head>
   <body>
+
+    <!-- Header -->
+    <header id="header">
+      <div class="logo"><a href="/"><%= image_tag('logo.png') %></a></div>
+      <a href="#menu"><span>Menu</span></a>
+    </header>
+
     <%= yield %>
+
+    <!-- Javascript -->
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'jquery.scrolly.min' %>
+    <%= javascript_include_tag 'jquery.scrollex.min' %>
+    <%= javascript_include_tag 'skel.min' %>
+    <%= javascript_include_tag 'util' %>
+    <%= javascript_include_tag 'main' %>
+
   </body>
 </html>
