@@ -11,7 +11,7 @@ class AlbumsController < ApplicationController
   def create
     @album = Album.new(album_params)
     if @album.order_listed.nil?
-      @album.order_listed = Album.all.count == 0 ? 1 : Album.all.count + 1
+      @album.order_listed = Album.all.count == 0 ? 1 : Album.last.order_listed + 1
     end
     if @album.save
       Album.increment_order(@album.id, @album.order_listed)

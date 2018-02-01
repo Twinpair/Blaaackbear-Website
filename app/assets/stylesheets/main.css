@@ -3328,12 +3328,6 @@
 			top: 0;
 		}
 
-			#header .logo a {
-				font-size: 1.25em;
-				color: #fff;
-				font-weight: 600;
-				text-decoration: none;
-			}
 
 			#header .logo a img{
 				width: 160px;
@@ -3342,12 +3336,6 @@
 				#header .logo a:hover {
 					color: #fff;
 				}
-
-			#header .logo span {
-				font-weight: 300;
-				font-size: .8em;
-				color: #FFF;
-			}
 
 		#header > a {
 			-moz-transition: color 0.2s ease-in-out;
@@ -4447,11 +4435,75 @@
 
 		}
 
-.btn {
-	padding: 6px 12px;
-	text-decoration: none;
-}
+	.btn {
+		padding: 6px 12px;
+		text-decoration: none;
+	}
 
-img {
-	width: 100%;
-}
+	img {
+		width: 100%;
+	}
+
+/* Album Show Page */
+
+	#album-name {
+		color: white;
+		font-weight: 100;
+		background: rgba(28,54,83,0.6);
+		font-size: 20px;
+		padding: 5px;
+	}
+
+	#album-name-link {
+		color: #8ce1ff;
+		font-weight: 700;
+		cursor: pointer;
+	}
+
+	/* ---- Masonry ---- */
+
+    .masonry-container{
+      width: 75%;
+      margin: auto;
+    }
+    
+    /* ---- grid ---- */
+
+    .grid:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    /* ---- .grid-item ---- */
+
+    .grid-sizer,
+    .grid-item {
+      width: 33.333%;
+    }
+
+    .grid-item {
+      float: left;
+    }
+
+    .grid-item img {
+      display: block;
+      width: 100%;
+      padding: 5px;
+    }
+
+    @media screen and (max-width: 500px){
+
+      .masonry-container{
+        width: 100%;
+      }
+
+      .grid-sizer,
+      .grid-item {
+        width: 100%;
+      }
+
+      .grid-item img {
+        padding: 10px;
+      }
+    }

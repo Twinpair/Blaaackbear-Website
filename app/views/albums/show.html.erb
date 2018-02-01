@@ -2,7 +2,10 @@
 
   <!-- Header -->
   <header id="header">
-    <div class="logo"><a href="/"><%= image_tag('logo.png') %></a></div>
+    <div class="logo">
+      <a href="/"><%= image_tag('logo.png') %></a>
+      <h1 id="album-name"><a id="album-name-link" href="/#photography">Albums</a> / <%= @album.name %></h1>
+    </div>
     <a href="#menu"><span>Menu</span></a>
   </header>
 
@@ -15,20 +18,20 @@
       <li><a href="/#contact" class="scrolly">Contact Me</a></li>
       <li><a></a></li>
       <li>
-        <ul class="icons">
-          <% unless @information.instagram.blank? %>
-            <li><a href="<%= @information.instagram %>" class="icon round fa-instagram" target="blank"><span class="label">Instagram</span></a></li>
-          <% end %>
-          <% unless @information.twitter.blank? %>
-            <li><a href="<%= @information.twitter %>" class="icon round fa-twitter" target="blank"><span class="label">Twitter</span></a></li>
-          <% end %>
-          <% unless @information.facebook.blank? %>
-            <li><a href="<%= @information.facebook %>" class="icon round fa-facebook" target="blank"><span class="label">Facebook</span></a></li>
-          <% end %>
-          <% unless @information.linkedin.blank? %>
-            <li><a href="<%= @information.linkedin %>" class="icon round fa-linkedin" target="blank"><span class="label">LinkedIn</span></a></li>
-          <% end %>
-        </ul>
+      <ul class="icons">
+        <% unless @information.instagram.blank? %>
+        <li><a href="<%= @information.instagram %>" class="icon round fa-instagram" target="blank"><span class="label">Instagram</span></a></li>
+        <% end %>
+        <% unless @information.twitter.blank? %>
+        <li><a href="<%= @information.twitter %>" class="icon round fa-twitter" target="blank"><span class="label">Twitter</span></a></li>
+        <% end %>
+        <% unless @information.facebook.blank? %>
+        <li><a href="<%= @information.facebook %>" class="icon round fa-facebook" target="blank"><span class="label">Facebook</span></a></li>
+        <% end %>
+        <% unless @information.linkedin.blank? %>
+        <li><a href="<%= @information.linkedin %>" class="icon round fa-linkedin" target="blank"><span class="label">LinkedIn</span></a></li>
+        <% end %>
+      </ul>
       </li>
     </ul>
   </nav>
@@ -40,18 +43,36 @@
 
 <% end %>
 
-    <!-- Content -->
-    <section id="post" class="wrapper bg-img" style="background-image: url(<%= @album.cover_image.url %>);">
-      <% if params['edit'] %>
-        <div class="text-center">
-          <%= link_to("Add a photo to this album", new_album_photo_path(album_id: @album.slug), class: "btn btn-success", style: "margin-top: 20px; margin-bottom: 15px;")%>
-          <%= link_to("Edit this albums information", edit_album_path(@album), class: "btn btn-warning", style: "margin-top: 20px; margin-bottom: 15px;")%><br>
-          <h3>Click a photo to edit or delete it from this album</h3>
-        </div>
-      <% end %>
-      <div class="container">
-        <div class="row">
-          <%= render @album.photos %>
-        </div>
+  <!-- Content -->
+  <section id="post" class="wrapper bg-img" style="background-image: url(<%= @album.cover_image.url %>);">
+    <% if params['edit'] %>
+      <div class="text-center">
+        <%= link_to("Add a photo to this album", new_album_photo_path(album_id: @album.slug), class: "btn btn-success", style: "margin-top: 20px; margin-bottom: 15px;")%>
+        <%= link_to("Edit this albums information", edit_album_path(@album), class: "btn btn-warning", style: "margin-top: 20px; margin-bottom: 15px;")%><br>
+        <h3>Click a photo to edit or delete it from this album</h3>
       </div>
-    </section>
+    <% end %>
+
+    <div class="masonry-container">
+      <div class="grid">
+        <div class="grid-sizer"></div>
+        <%= render @album.photos %>
+      </div>
+    </div>
+  </section>
+
+  <% content_for :scripts do %>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript">
+      // init Masonry after all images have loaded
+      var $grid = $('.grid').imagesLoaded( function() {
+        $grid.masonry({
+          itemSelector: '.grid-item',
+          percentPosition: true,
+          columnWidth: '.grid-sizer'
+        }); 
+      });
+
+    </script>
+  <% end %>
