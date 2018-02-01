@@ -1,0 +1,6 @@
+<div class="col-lg-6" <%= "onclick=document.location='#{edit_album_photo_path(@album, photo.id)}'" if params['edit'] %> <%= "style=cursor:pointer;" if params['edit'] %>>
+            <% if params['edit'] %>
+              <p>Order Listed: <%= photo.order_listed %></p>
+            <% end %>
+            <%= image_tag(photo.image.url) %>
+          </div>

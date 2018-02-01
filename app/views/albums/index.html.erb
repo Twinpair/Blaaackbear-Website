@@ -10,11 +10,12 @@
     <div class="row">
       <% @albums.each do |album| %>
         <div class="col-lg-4 col-md-6 portfolio-item">
-          <div class="card h-100" onclick="document.location='<%= album_path(album.id, edit: true) %>'" style="cursor: pointer;">
+          <div class="card h-100" onclick="document.location='<%= album_path(album, edit: true) %>'" style="cursor: pointer;">
             <%= image_tag(album.cover_image) %>
             <div class="card-body">
               <h3 class="card-title text-center">
-                <a href="<%= album_path(album.id, edit: true) %>"><%= album.name %></a>
+                <a href="<%= album_path(album, edit: true) %>"><%= album.name %></a><br>
+                Photos (<%= album.photos.count %>)
               </h3>
               <p class="card-text"><%= album.description %></p>
               <p class="card-text">Order Listed: <%= album.order_listed %></p>

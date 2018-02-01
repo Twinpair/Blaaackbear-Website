@@ -10,17 +10,17 @@ class AlbumsController < ApplicationController
 
   def create
     @album = Album.new(album_params)
-    @album.order_listed = Album.count + 1 if @album.order_listed.nil? 
+    @album.order_listed = Album.last.order_listed + 1 if @album.order_listed.nil? 
     if @album.save
       Album.increment_order(@album.id, @album.order_listed)
-      redirect_to album_path(@album.id, edit: true)
+      redirect_to album_path(@album, edit: true)
     else
       render :new
     end
   end
 
   def show
-    @album = Album.find(params[:id])
+    @album = Album.friendly.find(params[:id])
     @information = Information.first
   end
 
@@ -33,10 +33,12 @@ class AlbumsController < ApplicationController
     # Save order_listed attribute to update accoridingly later
     cache_order_listed = @album.order_listed
     if @album.update(album_params)
-      @album.order_listed = Album.count + 1 if @album.order_listed.nil? 
+      @album.order_listed = Album.last.order_listed + 1 if @album.order_listed.nil?
+      @album.slug = @album.name.downcase
+      @album.save
       # Don't increment other order_listed attributes if order_listed is the same on the one being updated
       Album.increment_order(@album.id, @album.order_listed) if cache_order_listed != @album.order_listed
-      redirect_to album_path(@album.id, edit: true)
+      redirect_to albums_path
     else
       render :edit
     end
@@ -44,12 +46,14 @@ class AlbumsController < ApplicationController
 
   def destroy
     @album = Album.find(params[:id])
+    @album.destroy
+    redirect_to albums_path
   end
 
 private
 
   def album_params
-    params.require(:album).permit(:name, :description, :cover_image, :order_listed)
+    params.require(:album).permit(:name, :description, :cover_image, :order_listed, :slug)
   end
 
 end

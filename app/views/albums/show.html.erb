@@ -42,17 +42,16 @@
 
     <!-- Content -->
     <section id="post" class="wrapper bg-img" style="background-image: url(<%= @album.cover_image.url %>);">
+      <% if params['edit'] %>
+        <div class="text-center">
+          <%= link_to("Add a photo to this album", new_album_photo_path(album_id: @album.slug), class: "btn btn-success", style: "margin-top: 20px; margin-bottom: 15px;")%>
+          <%= link_to("Edit this albums information", edit_album_path(@album), class: "btn btn-warning", style: "margin-top: 20px; margin-bottom: 15px;")%><br>
+          <h3>Click a photo to edit or delete it from this album</h3>
+        </div>
+      <% end %>
       <div class="container">
         <div class="row">
-          <div class="col-lg-6">
-            <%= image_tag('about.jpg') %>
-          </div>
-          <div class="col-lg-6">
-            <%= image_tag('banner.jpg') %>
-          </div>
-          <div class="col-lg-6">
-            <%= image_tag('contact.jpg') %>
-          </div>
+          <%= render @album.photos %>
         </div>
       </div>
     </section>
