@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
 
+  before_action :authenticate, only: [:edit]
+
   def index
     @information = Information.first
     @albums = Album.all

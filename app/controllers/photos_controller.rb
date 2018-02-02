@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
 
+  before_action :authenticate
   before_filter :set_album
 
   def new
