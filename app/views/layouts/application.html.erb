@@ -2,7 +2,11 @@
 <html>
   <head>
 
-    <title>Blaaackbear - NYC Based Photographer</title>
+    <% if (yield :title).empty? %>
+        <title>Blaaackbear - NYC Based Photographer</title>
+    <% else %>
+        <title><%= yield :title %> - NYC Based Photographer</title>
+    <% end %>
 
     <!-- Meta -->
     <meta charset="utf-8" />
