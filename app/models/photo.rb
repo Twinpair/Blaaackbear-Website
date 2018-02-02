@@ -8,11 +8,11 @@ class Photo < ApplicationRecord
   validates :image, presence: true
 
   def self.increment_order(id, order_listed, album_id)
-    Photo.where("album_id == ? AND order_listed >= ? AND id != ?", album_id, order_listed, id).update_all("order_listed = order_listed + 1")
+    Photo.where("album_id = ? AND order_listed >= ? AND id != ?", album_id, order_listed, id).update_all("order_listed = order_listed + 1")
   end
 
   def self.decrement_order(id, order_listed, album_id)
-    Photo.where("album_id == ? AND order_listed > ? AND id != ?", album_id, order_listed, id).update_all("order_listed = order_listed - 1")
+    Photo.where("album_id = ? AND order_listed > ? AND id != ?", album_id, order_listed, id).update_all("order_listed = order_listed - 1")
   end
 
 end
