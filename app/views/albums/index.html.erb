@@ -17,7 +17,7 @@
         <div class="col-lg-4 col-md-6 portfolio-item">
           <div class="card h-100" onclick="document.location='<%= album_path(album, edit: true) %>'" style="cursor: pointer;">
             <p class="card-text">Order Listed: <%= album.order_listed %></p>
-            <%= image_tag(album.cover_image) %>
+            <%= image_tag(album.cover_image.thumb.url) %>
             <div class="card-body">
               <h3 class="card-title text-center">
                 <a href="<%= album_path(album, edit: true) %>"><%= album.name %></a><br>

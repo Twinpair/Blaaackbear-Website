@@ -1,6 +1,32 @@
-<div class="grid-item" <%= "onclick=document.location='#{edit_album_photo_path(@album, photo.id)}'" if params['edit'] %> <%= "style=cursor:pointer;" if params['edit'] %>>
+<div class="grid-item hidden-xs" <%= "onclick=document.location='#{edit_album_photo_path(@album, photo.id)}'" if params['edit'] %> style="cursor:pointer;" data-toggle="modal" data-target="#photo_view<%= photo.id %>">
           <% if params['edit'] %>
             <p>Order Listed: <%= photo.order_listed %></p>
           <% end %>
-          <%= image_tag photo.image %>
+          <%= image_tag photo.image.masonry.url %>
         </div>
+
+        <div class="grid-item visible-xs" <%= "onclick=document.location='#{edit_album_photo_path(@album, photo.id)}'" if params['edit'] %>>
+          <% if params['edit'] %>
+            <p>Order Listed: <%= photo.order_listed %></p>
+          <% end %>
+          <%= image_tag photo.image.masonry.url %>
+        </div>
+
+        <% unless params['edit'] %>
+          <div class="modal fade product_view" id="photo_view<%= photo.id %>">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove" id="dismiss-icon"></span></a>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-12 product_img">
+                      <img src="<%= photo.image %>" class="img-responsive">
+                    </div>
+                  </div>
+                </div>  
+              </div>
+            </div>
+          </div>
+        <% end %>
