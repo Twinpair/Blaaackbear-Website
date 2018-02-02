@@ -4460,6 +4460,11 @@
 		cursor: pointer;
 	}
 
+	.order_listed {
+		margin: 0;
+		margin-left: 10px;
+	}
+
 	/* ---- Masonry ---- */
 
   .masonry-container{

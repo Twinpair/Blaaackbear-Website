@@ -1,13 +1,13 @@
 <div class="grid-item hidden-xs" <%= "onclick=document.location='#{edit_album_photo_path(@album, photo.id)}'" if params['edit'] %> style="cursor:pointer;" data-toggle="modal" data-target="#photo_view<%= photo.id %>">
           <% if params['edit'] %>
-            <p>Order Listed: <%= photo.order_listed %></p>
+            <p class="order_listed">Order Listed: <%= photo.order_listed %></p>
           <% end %>
           <%= image_tag photo.image.masonry.url %>
         </div>
 
         <div class="grid-item visible-xs" <%= "onclick=document.location='#{edit_album_photo_path(@album, photo.id)}'" if params['edit'] %>>
           <% if params['edit'] %>
-            <p>Order Listed: <%= photo.order_listed %></p>
+            <p class="order_listed">Order Listed: <%= photo.order_listed %></p>
           <% end %>
           <%= image_tag photo.image.masonry.url %>
         </div>
