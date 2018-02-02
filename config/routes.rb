@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :albums do 
     resources :photos, except: [:index, :show]
   end
+  resources :messages, only: [:index, :create, :destroy]
 
 end

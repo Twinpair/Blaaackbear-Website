@@ -48,6 +48,10 @@
 		-webkit-text-size-adjust: none;
 	}
 
+	#red {
+		color: red;
+	}
+
 /* Box Model */
 
 	*, *:before, *:after {

@@ -69,7 +69,8 @@
     <!-- Footer -->
     <footer id="contact" class="wrapper post bg-img" style="background-image: url(<%= @information.contact_image? ? @information.contact_image.url : asset_path('contact.jpg') %>);">>
       <div class="inner">
-        <form action="#" method="post" class="box">
+
+        <%= form_for @message, html: {:class => 'box'} do |f| %>
           <h2>Contact Me</h2>
           <% unless @information.email.blank? %>
             <p><b>Email:</b> <%= @information.email %></p>
@@ -77,22 +78,38 @@
           <% unless @information.phone.blank? %>
             <p><b>Phone #:</b> <%= @information.phone %></p>
           <% end %>
-          <div class="field half first">
-            <label for="name">Name</label>
-            <input name="name" id="name" type="text">
-          </div>
-          <div class="field half">
-            <label for="email">Email</label>
-            <input name="email" id="email" type="email">
-          </div>
-          <div class="field">
-            <label for="message">Message</label>
-            <textarea name="message" id="message" rows="3"></textarea>
-          </div>
-          <ul class="actions">
-            <li><input value="Send Message" class="button alt" type="submit"></li>
-          </ul>
-        </form>
+
+          <% if flash.key?("success") %>
+            <% flash.each do |message_type, message| %>
+              <%= content_tag(:div, message, class: "alert alert-#{message_type} text-center", id: "body-up", style: "font-size: 15px;") %>
+            <% end %>
+          <% else %>
+            <% flash.each do |message_type, message| %>
+              <% messages = message.split("=") %>
+              <div class="alert alert-danger text-center" id="body-up", style="font-size: 15px;"><%= messages[0] %><br><%= messages[1] %><br><%= messages[2] %></div>                
+            <% end %>
+
+            <div class="field half first">
+              <label>Name <span id="red">*</span></label>
+              <%= f.text_field :name, required: true %>
+            </div>
+
+            <div class="field half">
+              <label>Email <span id="red">*</span></label>
+              <%= f.text_field :email, type: "email", required: true %>
+            </div>
+
+            <div class="field">
+              <label>Message <span id="red">*</span></label>
+              <%= f.text_area :message, style: "resize: none;", rows: "3", required: true %>
+            </div>
+
+            <ul class="actions">
+              <%= f.submit "Send", class: "button alt"%>
+            </ul>
+
+          <% end %>
+        <% end %>
 
         <ul class="icons">
           <% unless @information.instagram.blank? %>
