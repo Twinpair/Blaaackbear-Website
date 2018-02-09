@@ -35,9 +35,9 @@
     <section id="banner" class="bg-img" style="background-image: url(<%= @information.banner_image? ? @information.banner_image.url : asset_path('banner.jpg') %>);">
       <div class="inner">
         <header>
-          <h1><%= @information.title %></h1>
+          <h1><%= image_tag('banner.png', id: 'banner-headline') %></h1>
           <h2><%= @information.headline %></h2>
-          <h3><%= @information.name %></p></h3>
+          <h2><%= @information.name %></h2>
         </header>
       </div>
       <a href="#about" class="more scrolly">About Me</a>

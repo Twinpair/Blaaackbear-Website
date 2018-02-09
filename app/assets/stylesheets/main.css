@@ -1688,6 +1688,7 @@
 		margin: 0 0 2em 0;
 		font-size: 20px;
 		font-weight: 400;
+		font-family: "arial";
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -1799,6 +1800,7 @@
 
 	h1, h2, h3, h4, h5, h6 {
 		color: #fff;
+		font-family: "arial";
 	}
 
 	blockquote {
@@ -1896,6 +1898,7 @@
 		text-decoration: none;
 		white-space: nowrap;
 		text-transform: uppercase;
+		font-family: "arial";
 	}
 
 		
@@ -2377,6 +2380,7 @@
 
 	label {
 		color: #fff;
+		font-family: "arial";
 	}
 
 	input[type="text"],
@@ -3615,11 +3619,15 @@
 		#banner h1 {
 			font-size: 7em;
 			line-height: 1.1;
-			font-family: "Lobster", cursive;
+			font-family: "futura";
 			margin-bottom: .25em;
 			color: rgba(255, 255, 255, 0.75);
 			text-shadow: -2px -2px 0 rgba(0, 0, 0, 0.125);
 			text-transform: none;
+		}
+
+		#banner #banner-headline {
+			width: 80%;
 		}
 
 		#banner p {
